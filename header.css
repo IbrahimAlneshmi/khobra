@@ -1,0 +1,63 @@
+
+
+.fixed-header {
+      display: flex;
+      justify-content: center; /* التعديل هنا */
+      align-items: center;
+      background-color: brown; /* لون الخلفية بني */
+      color: white; /* لون النص أبيض */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height:5%;
+      font-size: 14px;
+      z-index: 1000; /* يمكن ضبط القيمة حسب رغبتك للتأكد من أن الرأس يبقى أعلى كل شيء */
+      text-align: center;              
+}
+
+/* تنسيق قائمة التنقل */
+.nav-menu {
+  position:relative;
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  order: 2; /* إضافة هذا */
+  margin-left: 100px;
+}
+
+
+.menu-dropdown {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 48px; /* تعديل هذه القيمة حسب ارتفاع الزر */
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.menu-dropdown li {
+  margin-bottom: 10px;
+}
+
+.menu-dropdown a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 10px;
+}
+
+.menu-dropdown a:hover {
+  background-color: #ddd;
+}
+
+.menu-dropdown.show {
+  display: block;
+}

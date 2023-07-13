@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OCR Image to Text</title>
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js'></script>
+</head>
+<body>
+    <h1>OCR Image to Text</h1>
+    <input type="file" id="file-input" onchange="loadFile(event)">
+    <button id="extract-text">Extract Text</button>
+    <img id="image" width="500">
+    <h4>Extracted Text:</h4>
+    <div id="result"></div>
+    <h4>Highlighted Text:</h4>
+    <div id="highlight_text"></div>
+    <script>
+        // Loading the Image on Page
+        let inputImage = document.getElementById("file-input");
+        let imageElement = document.getElementById("image");
+        let loadFile = function (event) {
+            let imageFile = event.target.files[0];
+            let reader = new FileReader();
+            reader.onload = function () {
+                imageElement.src = reader.result;
+            };
+            reader.readAsDataURL(imageFile);
+        };
+
+        // Extract Text from Image
+        document.getElementById('extract-text').addEventListener('click', function () {
+            Tesseract.recognize(
+                imageElement,
+                'eng',
+                { logger: console.log }
+            ).then(({ data: { text } }) => {
+                document.getElementById('result').innerText = text;
+                searchAndHighlight(text);
+            });
+        });
+
+        // Search and highlight text on the page
+        function searchAndHighlight(text) {
+            let html = document.body.innerHTML;
+            let words = text.split(' ');
+            words.forEach(word => {
+                if (word.trim() != '') {
+                    let regexp = new RegExp('\b(' + word.trim() + ')\b', 'gi');
+                    html = html.replace(regexp, '<span style="background-color: yellow;">$1</span>');
+                }
+            });
+            document.getElementById('highlight_text').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

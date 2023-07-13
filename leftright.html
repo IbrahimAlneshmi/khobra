@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>الصفحة المدمجة</title>
+    <style>
+		 body {
+            
+          margin: 0;
+          overflow-x :hidden;
+                    }
+       html, body {
+			margin: 0; /• إزالة الهوامش التلقائية والحواف */
+			padding: 0; /* إزالة التبعيات */
+			width: 100%; /* جعل العرض يمتد على العرض الكامل للإطار */
+			height: 100%; /* جعل الارتفاع يمتد على الارتفاع الكامل للإطار */
+			overflow: hidden; /* إزالة أي شريط تمرير أفقي داخل الإطار */
+		  }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+        }
+        iframe {
+            width: 50%;
+            height: 100%;
+            frameborder: 0;
+            border: none;
+			overflow :hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <iframe class="frame1" id="first-iframe" src="index.html"></iframe>
+    <iframe class="frame2" id="second-iframe" src="https://q3e.oxfordonlinepractice.com/app/dashboard"></iframe>
+</div>
+<script>
+    function handleIframeScrolling(iframe) {
+      iframe.onload = () => {
+        const iframeDoc = iframe.contentWindow.document;
+        const iframeLocation = iframe.contentWindow.location;
+        if (localStorage.getItem(scrollPosition-${iframeLocation.pathname})) {
+          iframeDoc.scrollingElement.scrollTop = localStorage.getItem(scrollPosition-${iframeLocation.pathname});
+        }
+        iframeDoc.addEventListener("scroll", function() {
+          localStorage.setItem(scrollPosition-${iframeLocation.pathname}, iframeDoc.scrollingElement.scrollTop);
+        });
+      };
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const firstIframe = document.getElementById('first-iframe');
+      const secondIframe = document.getElementById('second-iframe');
+      handleIframeScrolling(firstIframe);
+      handleIframeScrolling(secondIframe);
+    });
+  </script>
+</body>
+</html>

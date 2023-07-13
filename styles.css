@@ -1,0 +1,43 @@
+body {
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #333;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+nav a {
+    position: fixed;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+    line-height: 32px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+.f-el{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* يمكن تعديل هذا القيمة حسب احتياجاتك */
+    background-color: #333;
+    color: white;
+    padding:10px;
+    z-index: 9999; /* هذه القيمة مهمة لجعل الـ header يظهر فوق باقي العناصر على الصفحة */
+}
+
