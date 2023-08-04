@@ -9,12 +9,9 @@
       /*alert("تم نسخ الكلمة: " + $(this).text());*/
     });
   });
-  
-      const activeColor = "yellow"; // اختر لون التفعيل
-      
-
-// تحديد جميع العناصر القابلة للنقر في المستند
-        const clickableTextElements = document.querySelectorAll(".wordToCopy");
+  const activeColor = "Blue"; // اختر لون التفعيل
+  // تحديد جميع العناصر القابلة للنقر في المستند
+  const clickableTextElements = document.querySelectorAll(".wordToCopy");
         
         // تطبيق الحدث لكل نص قابل للنقر
         clickableTextElements.forEach((element) => {
