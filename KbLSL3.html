@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="Level.css">
 <link rel="stylesheet" href="header.css">
 <title>نصوص للنسخ</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="copy.js"></script>
-
+<style>
+  .wordToCopy {
+    cursor: pointer;
+    background-color: lightgray;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 4px;
+    margin: 4px;
+  }
+  .head1{
+      background-color: #f0ff0f;
+  }
+  .head2{
+      background-color: #993ff9;
+  }
+</style>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+<style>
+  span:active {
+    color: red;
+	background-color: #000000;
+  }
+</style>
 </head>
 <body>
        <header class="fixed-header">
@@ -17,8 +50,8 @@
             <div class="nav-menu">
                 <button class="menu-button">&#8942;</button>
                 <ul class="menu-dropdown" id="menuDropdown">
-                    <li><a href="https://www.seuhelp.com">الصفحة الرئيسية</a></li>
-                    <li><a href="https://www.seuhelp.com/level-2-1">Level 2</a></li>
+                    <li><a href="index.html">الصفحة الرئيسية</a></li>
+                    <li><a href="Level2.html">Level 2</a></li>
                     <li><a href="RWLevel3.html">Level 3 WR</a></li>
                 </ul>
             </div>
@@ -1441,7 +1474,37 @@
 		  </tr>
 		</table>
 <!--******************************************************************************************************************************-->
+<script>
+  $(document).ready(function() {
+    $(".wordToCopy").on("click", function() {
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(this).text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+      /*alert("تم نسخ الكلمة: " + $(this).text());*/
+    });
+  });
+  
+      const activeColor = "blue"; // اختر لون التفعيل
+      
 
+// تحديد جميع العناصر القابلة للنقر في المستند
+        const clickableTextElements = document.querySelectorAll(".wordToCopy");
+        
+        // تطبيق الحدث لكل نص قابل للنقر
+        clickableTextElements.forEach((element) => {
+          element.addEventListener("click", () => {
+            // إعادة تعيين ألوان جميع العناصر النصية القابلة للنقر
+            clickableTextElements.forEach((el) => {
+              el.style.color = "";
+           });
+        
+            // تغيير لون النص المنقر عليه
+            element.style.color = activeColor;
+          });
+        });
+</script>
 
 </body>
 </html>
