@@ -1,4 +1,4 @@
-<script>
+
   $(document).ready(function() {
     $(".wordToCopy").on("click", function() {
       var $temp = $("<input>");
@@ -28,4 +28,4 @@
             element.style.color = activeColor;
           });
         });
-</script>
+
