@@ -6,33 +6,24 @@
 <body>
     <h1>Image Text Extraction</h1>
     <form action="/upload_image" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*">
+        <input type="file" name="image">
         <input type="submit" value="Extract Text">
     </form>
-    <div>
-        <h2>Extracted Text:</h2>
-        <p id="extracted-text"></p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <p>Extracted Text:</p>
+    <pre id="extracted_text"></pre>
+    
     <script>
-        $(document).ready(function() {
-            $('form').submit(function(e) {
-                e.preventDefault();
-
-                var formData = new FormData(this);
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/upload_image',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        $('#extracted-text').text(response.text);
-                    }
-                });
+        document.querySelector('form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const response = await fetch('/upload_image', {
+                method: 'POST',
+                body: formData
             });
+            
+            const data = await response.json();
+            document.getElementById('extracted_text').textContent = data.text;
         });
     </script>
 </body>
