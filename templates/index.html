@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Text Extraction</title>
+</head>
+<body>
+    <h1>Image Text Extraction</h1>
+    <form action="/upload_image" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <input type="submit" value="Extract Text">
+    </form>
+    <div>
+        <h2>Extracted Text:</h2>
+        <p id="extracted-text"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/upload_image',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#extracted-text').text(response.text);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
